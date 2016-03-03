@@ -1,19 +1,34 @@
 #include "String.h"
 
-void StringInit(String* pStr)
+String* StringCreate()
 {
-    pStr->pBuf = (char*)malloc(BUF_SIZE * sizeof(char));
-    pStr->len = 0;
+	String *pStr = (String*)malloc(sizeof(String));
+
+	pStr->pBuf = (char*)malloc(BUF_SIZE * sizeof(char));
+	pStr->pBuf[0] = '\0';
+	pStr->len = 0;
 }
 
 void StringDestroy(String* pStr)
 {
+	if (pStr == NULL)
+	{
+		return;
+	}
+
 	if (pStr->pBuf != NULL)
 	{
 		free(pStr->pBuf);
 		pStr->pBuf = NULL;
 		pStr->len = 0;
 	}
+
+	free(pStr);
+}
+
+char* StringGetBuffer(String* pStr)
+{
+	return pStr->pBuf;
 }
 
 void StringSet(String* pStr, char* pBuf)

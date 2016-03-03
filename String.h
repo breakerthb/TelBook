@@ -10,10 +10,11 @@ typedef struct _tagString
     int len;
 }String;
 
-void StringInit(String* pStr);
+String* StringCreate();
 void StringDestroy(String* pStr);
 
 void StringSet(String* pStr, char* pBuf);
+char* StringGetBuffer(String* pStr);
 void StringCopy(String* pDes, String* pSrc);
 void StringAppend(String* pStr, char* pBuf);
 
